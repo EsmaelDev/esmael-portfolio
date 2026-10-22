@@ -1,0 +1,97 @@
+/* ============================================================
+   EG — design tokens · Obsidian / Gold
+   Esmael Gemechu · premium developer portfolio
+   ============================================================ */
+
+:root {
+  /* ——— core palette ——— */
+  --obsidian: #090a0c;
+  --charcoal: #111318;
+  --surface: #181b22;
+  --surface-2: #1e222b;
+  --ivory: #f4f1ea;
+  --gold: #c8a96a;
+  --gold-deep: #a98847;
+  --gold-soft: #e2cfa4;
+  --silver: #b4b5bb;
+  --gray: #8c9098;
+  --gray-deep: #5c6068;
+
+  /* ——— semantic (theme-aware) ——— */
+  --bg: var(--obsidian);
+  --bg-raised: var(--charcoal);
+  --bg-card: var(--surface);
+  --bg-hover: var(--surface-2);
+  --text: var(--ivory);
+  --text-body: var(--silver);
+  --text-soft: var(--gray);
+  --accent: var(--gold);
+  --accent-strong: var(--gold-soft);
+  --accent-ink: #0b0c0f; /* text on gold surfaces */
+
+  /* ——— hairlines & overlays ——— */
+  --line: rgba(200, 169, 106, 0.16);
+  --line-strong: rgba(200, 169, 106, 0.34);
+  --line-soft: rgba(244, 241, 234, 0.08);
+  --ghost-stroke: rgba(200, 169, 106, 0.5);
+  --veil: rgba(9, 10, 12, 0.62);
+  --veil-strong: rgba(9, 10, 12, 0.88);
+  --img-tint: linear-gradient(180deg, rgba(9, 10, 12, 0) 42%, rgba(9, 10, 12, 0.74) 100%);
+
+  /* ——— typography ——— */
+  --font-display: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Courier New", monospace;
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+
+  --fs-hero: clamp(2.55rem, 1.1rem + 6.4vw, 5.3rem);
+  --fs-h2: clamp(1.9rem, 1.35rem + 2.6vw, 3.3rem);
+  --fs-h3: clamp(1.25rem, 1.1rem + 0.7vw, 1.6rem);
+  --fs-lede: clamp(1.02rem, 0.98rem + 0.35vw, 1.18rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.72rem;
+
+  /* ——— rhythm ——— */
+  --space-section: clamp(4.5rem, 10vh, 8.5rem);
+  --container: min(1180px, 92vw);
+  --radius: 6px;
+  --radius-lg: 10px;
+  --nav-h: 76px;
+
+  /* ——— motion ——— */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-luxe: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur: 0.7s;
+
+  /* ——— layers ——— */
+  --z-nav: 60;
+  --z-menu: 70;
+  --z-modal: 80;
+  --z-palette: 90;
+  --z-toast: 95;
+  --z-cursor: 100;
+  --z-loader: 110;
+  --z-progress: 105;
+}
+
+/* ——— Ivory (light) theme — art-directed, not inverted ———— */
+:root[data-theme="ivory"] {
+  --bg: #f1ede3;
+  --bg-raised: #f8f5ee;
+  --bg-card: #fbf9f3;
+  --bg-hover: #ece7da;
+  --text: #14161b;
+  --text-body: #383b42;
+  --text-soft: #585c66;
+  --accent: #8a6d2f;
+  --accent-strong: #6f5724;
+  --accent-ink: #fbf9f3;
+  --line: rgba(20, 22, 27, 0.2);
+  --line-strong: rgba(20, 22, 27, 0.34);
+  --line-soft: rgba(20, 22, 27, 0.1);
+  --veil: rgba(241, 237, 227, 0.6);
+  --veil-strong: rgba(241, 237, 227, 0.86);
+  --ghost-stroke: rgba(20, 22, 27, 0.32);
+  --img-tint: linear-gradient(180deg, rgba(241, 237, 227, 0) 42%, rgba(241, 237, 227, 0.82) 100%);
+}
