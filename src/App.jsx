@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
+import ScrollProgress from "./components/ScrollProgress";
 import EgMark from "./components/EgMark";
 import Icon from "./components/Icon";
 import { site } from "./data/site.config";
@@ -29,16 +31,16 @@ export default function App() {
 
   const roadmap = [
     {
-      day: "Day 1 (Today)",
+      day: "Day 1",
       title: "Architecture & Design System Foundation",
       desc: "Project scaffolding, Obsidian/Gold design tokens, typography, and Git sprint roadmap.",
       status: "completed",
     },
     {
-      day: "Day 2",
+      day: "Day 2 (Today)",
       title: "Navigation Architecture & AMU Time Radar",
-      desc: "Sticky blur navbar, live Arba Minch timezone radar, mobile drawer, and keyboard controls.",
-      status: "upcoming",
+      desc: "Sticky blur navbar, live Arba Minch timezone radar, mobile drawer, and theme switcher.",
+      status: "completed-today",
     },
     {
       day: "Day 3",
@@ -73,68 +75,64 @@ export default function App() {
   ];
 
   return (
-    <div style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)", padding: "2rem 1.5rem" }}>
-      {/* Top Header */}
-      <header style={{ maxWidth: "1100px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: "2rem", borderBottom: "1px solid var(--line)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
-          <EgMark size={40} withDash />
-          <div>
-            <h1 style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem", fontWeight: 700, margin: 0, color: "var(--text)" }}>
-              {site.name}
-            </h1>
-            <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--text-soft)", margin: 0, textTransform: "uppercase", letterSpacing: "0.15em" }}>
-              {site.role} • {site.school}
-            </p>
-          </div>
-        </div>
+    <div style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)" }}>
+      {/* Viewport Reading Progress Bar */}
+      <ScrollProgress />
 
-        {/* Live Arba Minch Time Radar */}
-        <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.4rem 0.85rem", borderRadius: "999px", background: "rgba(255,255,255,0.03)", border: "1px solid var(--line)", fontFamily: "var(--font-mono)", fontSize: "0.76rem" }}>
-          <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 8px #4ade80" }} />
-          <span style={{ color: "var(--text)", fontWeight: 600 }}>{time || "11:30:00"}</span>
-          <span style={{ color: "var(--gray-deep)", fontSize: "0.68rem" }}>AMU · GMT+3</span>
-        </div>
-      </header>
+      {/* Production Sticky Navigation Bar */}
+      <Navbar onOpenPalette={() => {}} />
 
       {/* Main Sprint Dashboard */}
-      <main style={{ maxWidth: "1100px", margin: "3.5rem auto" }}>
+      <main style={{ maxWidth: "1100px", margin: "6.5rem auto 3.5rem", padding: "0 1.5rem" }}>
         {/* Sprint Status Badge */}
         <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.35rem 0.85rem", borderRadius: "999px", background: "rgba(200, 169, 106, 0.12)", border: "1px solid rgba(200, 169, 106, 0.3)", color: "var(--gold)", fontFamily: "var(--font-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "1.5rem" }}>
-          <span>🔥</span>
-          <span>Daily Git Sprint • Day 1 of 7</span>
+          <span>🚀</span>
+          <span>Daily Git Sprint • Day 2 of 7</span>
         </div>
 
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 5vw, 3.8rem)", fontWeight: 800, lineHeight: 1.1, margin: "0 0 1.2rem", maxWidth: "800px" }}>
-          Architecting a luxury developer portfolio with{" "}
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 5vw, 3.8rem)", fontWeight: 800, lineHeight: 1.1, margin: "0 0 1.2rem", maxWidth: "820px" }}>
+          Navigation Architecture &amp;{" "}
           <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--gold)", fontWeight: 400 }}>
-            daily discipline
+            AMU Time Radar
           </span>
           .
         </h2>
 
-        <p style={{ fontSize: "1.05rem", color: "var(--text-body)", maxWidth: "680px", lineHeight: 1.65, margin: "0 0 2.5rem" }}>
-          Engineered by <strong style={{ color: "var(--text)" }}>Esmael Gemechu</strong>, Software Engineering student at Arba Minch University, Ethiopia. Built day-by-day with daily commits demonstrating clean architecture, component design, and git mastery.
+        <p style={{ fontSize: "1.05rem", color: "var(--text-body)", maxWidth: "680px", lineHeight: 1.65, margin: "0 0 2rem" }}>
+          Day 2 delivers the glassmorphic sticky navigation, mobile navigation drawer, theme switching engine, and real-time East Africa Timezone Radar (<code style={{ color: "var(--gold)", fontFamily: "var(--font-mono)" }}>GMT+3</code>) anchored to Arba Minch University.
         </p>
 
-        {/* Quick Actions */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginBottom: "4rem" }}>
-          <a
-            href={site.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.8rem 1.4rem", borderRadius: "12px", background: "var(--gold)", color: "#090A0C", fontWeight: 700, fontSize: "0.88rem", textDecoration: "none" }}
-          >
-            <Icon name="github" size={16} />
-            <span>View GitHub Repository</span>
-          </a>
+        {/* Feature Verification Callout */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem", marginBottom: "3rem" }}>
+          <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
+            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🛰️</span>
+            <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
+              Live AMU Time Radar
+            </h4>
+            <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
+              Ticking live in the top navigation bar with milliseconds accuracy and an active status beacon.
+            </p>
+          </div>
 
-          <a
-            href={`mailto:${site.email}`}
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.8rem 1.4rem", borderRadius: "12px", background: "rgba(255,255,255,0.04)", border: "1px solid var(--line)", color: "var(--text)", fontWeight: 500, fontSize: "0.88rem", textDecoration: "none" }}
-          >
-            <Icon name="mail" size={16} />
-            <span>Contact ({site.email})</span>
-          </a>
+          <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
+            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🌓</span>
+            <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
+              Dynamic Theme Engine
+            </h4>
+            <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
+              Click the sun/moon icon in the navbar to test instant luxury switching between Obsidian Dark and Warm Ivory.
+            </p>
+          </div>
+
+          <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
+            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>📱</span>
+            <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
+              Mobile Drawer Menu
+            </h4>
+            <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
+              Fully accessible mobile overlay menu with animated burger toggle and focus lock.
+            </p>
+          </div>
         </div>
 
         {/* 7-Day Sprint Roadmap Table */}
@@ -149,12 +147,13 @@ export default function App() {
               </h3>
             </div>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", padding: "0.3rem 0.75rem", borderRadius: "999px", background: "rgba(34, 197, 94, 0.12)", color: "#4ade80", border: "1px solid rgba(34, 197, 94, 0.25)" }}>
-              Day 1 Active
+              Day 2 of 7 Active
             </span>
           </div>
 
           <div style={{ display: "grid", gap: "1rem" }}>
             {roadmap.map((item) => {
+              const isToday = item.status === "completed-today";
               const isDone = item.status === "completed";
               return (
                 <div
@@ -162,8 +161,8 @@ export default function App() {
                   style={{
                     padding: "1.2rem 1.4rem",
                     borderRadius: "14px",
-                    background: isDone ? "rgba(200, 169, 106, 0.06)" : "rgba(255, 255, 255, 0.02)",
-                    border: isDone ? "1px solid rgba(200, 169, 106, 0.3)" : "1px solid var(--line)",
+                    background: isToday ? "rgba(200, 169, 106, 0.08)" : isDone ? "rgba(34, 197, 94, 0.04)" : "rgba(255, 255, 255, 0.02)",
+                    border: isToday ? "1px solid var(--gold)" : isDone ? "1px solid rgba(34, 197, 94, 0.3)" : "1px solid var(--line)",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
@@ -173,7 +172,7 @@ export default function App() {
                 >
                   <div style={{ maxWidth: "650px" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.3rem" }}>
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", fontWeight: 700, color: isDone ? "var(--gold)" : "var(--text-soft)" }}>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", fontWeight: 700, color: isToday ? "var(--gold)" : isDone ? "#4ade80" : "var(--text-soft)" }}>
                         {item.day}
                       </span>
                       <span style={{ color: "var(--gray-deep)" }}>•</span>
@@ -192,12 +191,12 @@ export default function App() {
                       fontSize: "0.72rem",
                       padding: "0.3rem 0.7rem",
                       borderRadius: "6px",
-                      background: isDone ? "rgba(34, 197, 94, 0.15)" : "rgba(255, 255, 255, 0.04)",
-                      color: isDone ? "#4ade80" : "var(--text-soft)",
-                      border: isDone ? "1px solid rgba(34, 197, 94, 0.3)" : "1px solid var(--line)",
+                      background: isToday ? "rgba(200, 169, 106, 0.15)" : isDone ? "rgba(34, 197, 94, 0.15)" : "rgba(255, 255, 255, 0.04)",
+                      color: isToday ? "var(--gold)" : isDone ? "#4ade80" : "var(--text-soft)",
+                      border: isToday ? "1px solid var(--gold)" : isDone ? "1px solid rgba(34, 197, 94, 0.3)" : "1px solid var(--line)",
                     }}
                   >
-                    {isDone ? "✓ Committed Today" : "⏳ Up Next"}
+                    {isToday ? "✓ Committing Today" : isDone ? "✓ Day 1 Complete" : "⏳ Up Next"}
                   </span>
                 </div>
               );
@@ -207,12 +206,12 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer style={{ maxWidth: "1100px", margin: "3rem auto 0", paddingTop: "1.5rem", borderTop: "1px solid var(--line)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", fontSize: "0.78rem", color: "var(--text-soft)", fontFamily: "var(--font-mono)" }}>
+      <footer style={{ maxWidth: "1100px", margin: "3rem auto 0", padding: "1.5rem", borderTop: "1px solid var(--line)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", fontSize: "0.78rem", color: "var(--text-soft)", fontFamily: "var(--font-mono)" }}>
         <p style={{ margin: 0 }}>
           © 2026 {site.name} • Arba Minch University, Ethiopia
         </p>
         <p style={{ margin: 0 }}>
-          Day 1 Commit: Scaffolding &amp; Design Architecture
+          Day 2 Commit: Navigation Architecture &amp; AMU Time Radar
         </p>
       </footer>
     </div>
