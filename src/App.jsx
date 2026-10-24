@@ -1,34 +1,11 @@
-import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import ScrollProgress from "./components/ScrollProgress";
-import EgMark from "./components/EgMark";
+import Hero from "./sections/Hero";
+import Marquee from "./components/Marquee";
 import Icon from "./components/Icon";
 import { site } from "./data/site.config";
 
 export default function App() {
-  const [time, setTime] = useState("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      try {
-        const d = new Date();
-        const str = d.toLocaleTimeString("en-US", {
-          timeZone: "Africa/Addis_Ababa",
-          hour12: false,
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        });
-        setTime(str);
-      } catch {
-        setTime(new Date().toTimeString().slice(0, 8));
-      }
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   const roadmap = [
     {
       day: "Day 1",
@@ -37,16 +14,16 @@ export default function App() {
       status: "completed",
     },
     {
-      day: "Day 2 (Today)",
+      day: "Day 2",
       title: "Navigation Architecture & AMU Time Radar",
       desc: "Sticky blur navbar, live Arba Minch timezone radar, mobile drawer, and theme switcher.",
-      status: "completed-today",
+      status: "completed",
     },
     {
-      day: "Day 3",
+      day: "Day 3 (Today)",
       title: "Editorial Hero Section & Portrait Framing",
-      desc: "Architectural portrait frame, headline typography, and Arba Minch academic positioning.",
-      status: "upcoming",
+      desc: "Architectural portrait frame, headline typography, orbital geometry, and AMU academic positioning.",
+      status: "completed-today",
     },
     {
       day: "Day 4",
@@ -75,62 +52,68 @@ export default function App() {
   ];
 
   return (
-    <div style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)" }}>
+    <div className="app is-booted" style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)" }}>
       {/* Viewport Reading Progress Bar */}
       <ScrollProgress />
 
       {/* Production Sticky Navigation Bar */}
       <Navbar onOpenPalette={() => {}} />
 
-      {/* Main Sprint Dashboard */}
-      <main style={{ maxWidth: "1100px", margin: "6.5rem auto 3.5rem", padding: "0 1.5rem" }}>
+      {/* Day 3 Editorial Hero Section */}
+      <Hero />
+
+      {/* Luxury Marquee Banner */}
+      <Marquee items={site.marquee} />
+
+      {/* Main Sprint Dashboard & Verification Hub */}
+      <section style={{ maxWidth: "1100px", margin: "4rem auto 3.5rem", padding: "0 1.5rem" }}>
         {/* Sprint Status Badge */}
         <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.35rem 0.85rem", borderRadius: "999px", background: "rgba(200, 169, 106, 0.12)", border: "1px solid rgba(200, 169, 106, 0.3)", color: "var(--gold)", fontFamily: "var(--font-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "1.5rem" }}>
-          <span>🚀</span>
-          <span>Daily Git Sprint • Day 2 of 7</span>
+          <span>🌟</span>
+          <span>Daily Git Sprint • Day 3 of 7</span>
         </div>
 
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 5vw, 3.8rem)", fontWeight: 800, lineHeight: 1.1, margin: "0 0 1.2rem", maxWidth: "820px" }}>
-          Navigation Architecture &amp;{" "}
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 800, lineHeight: 1.15, margin: "0 0 1.2rem", maxWidth: "820px" }}>
+          Editorial Hero Section &amp;{" "}
           <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--gold)", fontWeight: 400 }}>
-            AMU Time Radar
+            Portrait Presentation
           </span>
           .
         </h2>
 
-        <p style={{ fontSize: "1.05rem", color: "var(--text-body)", maxWidth: "680px", lineHeight: 1.65, margin: "0 0 2rem" }}>
-          Day 2 delivers the glassmorphic sticky navigation, mobile navigation drawer, theme switching engine, and real-time East Africa Timezone Radar (<code style={{ color: "var(--gold)", fontFamily: "var(--font-mono)" }}>GMT+3</code>) anchored to Arba Minch University.
+        <p style={{ fontSize: "1.05rem", color: "var(--text-body)", maxWidth: "680px", lineHeight: 1.65, margin: "0 0 2.5rem" }}>
+          Day 3 integrates the full editorial hero presentation: custom orbital astronomical geometry with cursor parallax, high-resolution portrait framing with architectural coordinate ticks, and responsive typography honoring Arba Minch University.
         </p>
 
         {/* Feature Verification Callout */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem", marginBottom: "3rem" }}>
           <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
-            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🛰️</span>
+            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🪐</span>
             <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
-              Live AMU Time Radar
+              Orbital Astronomical Art
             </h4>
             <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
-              Ticking live in the top navigation bar with milliseconds accuracy and an active status beacon.
+              Dynamic SVG orbital rings reacting smoothly to cursor movements with subtle desktop parallax.
             </p>
           </div>
 
           <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
-            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🌓</span>
+            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🖼️</span>
             <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
-              Dynamic Theme Engine
+              Architectural Portrait Framing
             </h4>
             <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
-              Click the sun/moon icon in the navbar to test instant luxury switching between Obsidian Dark and Warm Ivory.
+              Local high-resolution portrait asset framed with precision ticks, caption badge, and shadow depth.
             </p>
           </div>
 
           <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
-            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>📱</span>
+            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>♾️</span>
             <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
-              Mobile Drawer Menu
+              Continuous Luxury Marquee
             </h4>
             <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
-              Fully accessible mobile overlay menu with animated burger toggle and focus lock.
+              Smooth infinite marquee highlighting software engineering competencies and core design disciplines.
             </p>
           </div>
         </div>
@@ -147,7 +130,7 @@ export default function App() {
               </h3>
             </div>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", padding: "0.3rem 0.75rem", borderRadius: "999px", background: "rgba(34, 197, 94, 0.12)", color: "#4ade80", border: "1px solid rgba(34, 197, 94, 0.25)" }}>
-              Day 2 of 7 Active
+              Day 3 of 7 Active
             </span>
           </div>
 
@@ -196,14 +179,14 @@ export default function App() {
                       border: isToday ? "1px solid var(--gold)" : isDone ? "1px solid rgba(34, 197, 94, 0.3)" : "1px solid var(--line)",
                     }}
                   >
-                    {isToday ? "✓ Committing Today" : isDone ? "✓ Day 1 Complete" : "⏳ Up Next"}
+                    {isToday ? "✓ Committing Today" : isDone ? "✓ Completed" : "⏳ Up Next"}
                   </span>
                 </div>
               );
             })}
           </div>
         </div>
-      </main>
+      </section>
 
       {/* Footer */}
       <footer style={{ maxWidth: "1100px", margin: "3rem auto 0", padding: "1.5rem", borderTop: "1px solid var(--line)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", fontSize: "0.78rem", color: "var(--text-soft)", fontFamily: "var(--font-mono)" }}>
@@ -211,7 +194,7 @@ export default function App() {
           © 2026 {site.name} • Arba Minch University, Ethiopia
         </p>
         <p style={{ margin: 0 }}>
-          Day 2 Commit: Navigation Architecture &amp; AMU Time Radar
+          Day 3 Commit: Editorial Hero &amp; Portrait Framing
         </p>
       </footer>
     </div>

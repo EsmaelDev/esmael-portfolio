@@ -13,8 +13,8 @@ This portfolio is being engineered day-by-day with daily commits for the Web Des
 | Day | Milestone / Focus | Status | Deliverables & Highlights |
 | :--- | :--- | :---: | :--- |
 | **Day 1** | Architecture & Design Tokens | ✅ **Committed** | Project scaffolding, Vite + React setup, Obsidian/Gold design system tokens, sprint roadmap |
-| **Day 2 (Today)** | Navigation & AMU Time Radar | ✅ **Committed** | Sticky glassmorphic navbar, live Arba Minch (GMT+3) timezone clock, responsive mobile drawer, theme switcher |
-| **Day 3** | Editorial Hero & Portrait | ⏳ Upcoming | Architectural portrait framing, headline typography, Arba Minch academic positioning |
+| **Day 2** | Navigation & AMU Time Radar | ✅ **Committed** | Sticky glassmorphic navbar, live Arba Minch (GMT+3) timezone clock, responsive mobile drawer, theme switcher |
+| **Day 3 (Today)** | Editorial Hero & Portrait | ✅ **Committed** | Architectural portrait framing, headline typography, orbital astronomy art, continuous marquee |
 | **Day 4** | Interactive Skills Matrix | ⏳ Upcoming | Multi-category discipline filters, project application chips, and AMU curriculum breakdown |
 | **Day 5** | The 3 Featured Projects | ⏳ Upcoming | Shakir Bakery, Bamrika Fashion, and Mekida Hotel QR Menu with interactive smartphone simulation |
 | **Day 6** | Engineering Journey & Process | ⏳ Upcoming | 4 software engineering principles, iterative problem-solving methodology |

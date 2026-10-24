@@ -61,7 +61,7 @@
 
 .hero__overline {
   margin-bottom: 1.6rem;
-  animation: eg-rise 0.9s var(--ease-out) 0.15s both paused;
+  animation: eg-rise 0.9s var(--ease-out) 0.15s both running;
 }
 
 .hero__title {
@@ -77,8 +77,8 @@
 
 .hero__title .line-inner {
   display: inline-block;
-  transform: translateY(112%);
-  animation: eg-line-reveal 1s var(--ease-out) forwards paused;
+  transform: translateY(0);
+  animation: eg-line-reveal 1s var(--ease-out) forwards running;
 }
 
 .is-booted .hero__overline {
@@ -102,7 +102,7 @@
   color: var(--text-body);
   max-width: 48ch;
   margin-bottom: 2.2rem;
-  animation: eg-rise 0.9s var(--ease-out) 0.34s both paused;
+  animation: eg-rise 0.9s var(--ease-out) 0.34s both running;
 }
 
 .is-booted .hero__lede {
@@ -114,7 +114,7 @@
   flex-wrap: wrap;
   gap: 0.9rem;
   margin-bottom: 2.4rem;
-  animation: eg-rise 0.9s var(--ease-out) 0.46s both paused;
+  animation: eg-rise 0.9s var(--ease-out) 0.46s both running;
 }
 
 .is-booted .hero__ctas {
@@ -125,7 +125,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
-  animation: eg-rise 0.9s var(--ease-out) 0.58s both paused;
+  animation: eg-rise 0.9s var(--ease-out) 0.58s both running;
 }
 
 .is-booted .hero__meta {
@@ -195,7 +195,7 @@
   position: relative;
   margin-inline: auto;
   width: min(420px, 100%);
-  animation: eg-rise 1s var(--ease-out) 0.5s both paused;
+  animation: eg-rise 1s var(--ease-out) 0.5s both running;
 }
 
 .is-booted .hero__portrait {
