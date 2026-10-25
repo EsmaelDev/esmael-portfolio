@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import ScrollProgress from "./components/ScrollProgress";
 import Hero from "./sections/Hero";
 import Marquee from "./components/Marquee";
+import Skills from "./sections/Skills";
 import Icon from "./components/Icon";
 import { site } from "./data/site.config";
 
@@ -20,16 +21,16 @@ export default function App() {
       status: "completed",
     },
     {
-      day: "Day 3 (Today)",
+      day: "Day 3",
       title: "Editorial Hero Section & Portrait Framing",
       desc: "Architectural portrait frame, headline typography, orbital geometry, and AMU academic positioning.",
-      status: "completed-today",
+      status: "completed",
     },
     {
-      day: "Day 4",
+      day: "Day 4 (Today)",
       title: "Interactive Skills & Engineering Arsenal",
-      desc: "Categorized skill filters, project connection badges, and AMU curriculum breakdown.",
-      status: "upcoming",
+      desc: "Categorized skill filters, project connection badges, context pills, and AMU curriculum breakdown.",
+      status: "completed-today",
     },
     {
       day: "Day 5",
@@ -59,61 +60,64 @@ export default function App() {
       {/* Production Sticky Navigation Bar */}
       <Navbar onOpenPalette={() => {}} />
 
-      {/* Day 3 Editorial Hero Section */}
+      {/* Hero Section */}
       <Hero />
 
       {/* Luxury Marquee Banner */}
       <Marquee items={site.marquee} />
 
+      {/* Day 4 Interactive Skills & Toolkit Matrix */}
+      <Skills />
+
       {/* Main Sprint Dashboard & Verification Hub */}
       <section style={{ maxWidth: "1100px", margin: "4rem auto 3.5rem", padding: "0 1.5rem" }}>
         {/* Sprint Status Badge */}
         <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.35rem 0.85rem", borderRadius: "999px", background: "rgba(200, 169, 106, 0.12)", border: "1px solid rgba(200, 169, 106, 0.3)", color: "var(--gold)", fontFamily: "var(--font-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "1.5rem" }}>
-          <span>🌟</span>
-          <span>Daily Git Sprint • Day 3 of 7</span>
+          <span>⚡</span>
+          <span>Daily Git Sprint • Day 4 of 7</span>
         </div>
 
         <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 800, lineHeight: 1.15, margin: "0 0 1.2rem", maxWidth: "820px" }}>
-          Editorial Hero Section &amp;{" "}
+          Interactive Skills &amp;{" "}
           <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--gold)", fontWeight: 400 }}>
-            Portrait Presentation
+            Engineering Arsenal
           </span>
           .
         </h2>
 
         <p style={{ fontSize: "1.05rem", color: "var(--text-body)", maxWidth: "680px", lineHeight: 1.65, margin: "0 0 2.5rem" }}>
-          Day 3 integrates the full editorial hero presentation: custom orbital astronomical geometry with cursor parallax, high-resolution portrait framing with architectural coordinate ticks, and responsive typography honoring Arba Minch University.
+          Day 4 integrates the multi-category technical skills matrix: instant discipline filtering, verified context badges (academic vs. production), project connection chips, and the Arba Minch University Software Engineering curriculum highlight.
         </p>
 
         {/* Feature Verification Callout */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem", marginBottom: "3rem" }}>
           <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
-            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🪐</span>
+            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🗂️</span>
             <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
-              Orbital Astronomical Art
+              Interactive Category Filtering
             </h4>
             <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
-              Dynamic SVG orbital rings reacting smoothly to cursor movements with subtle desktop parallax.
+              Filter by Languages &amp; Core Logic, Frontend, Computer Science (AMU), or Workflow with live module counts.
             </p>
           </div>
 
           <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
-            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🖼️</span>
+            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🔗</span>
             <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
-              Architectural Portrait Framing
+              Project Connection Chips
             </h4>
             <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
-              Local high-resolution portrait asset framed with precision ticks, caption badge, and shadow depth.
+              Every skill highlights where it was actively applied in your featured projects (e.g. Mekida QR Engine, Bamrika Fashion).
             </p>
           </div>
 
           <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
-            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>♾️</span>
+            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🎓</span>
             <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
-              Continuous Luxury Marquee
+              AMU Curriculum Banner
             </h4>
             <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
-              Smooth infinite marquee highlighting software engineering competencies and core design disciplines.
+              Dedicated card honoring your academic Software Engineering curriculum at Arba Minch University for 2026.
             </p>
           </div>
         </div>
@@ -130,7 +134,7 @@ export default function App() {
               </h3>
             </div>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", padding: "0.3rem 0.75rem", borderRadius: "999px", background: "rgba(34, 197, 94, 0.12)", color: "#4ade80", border: "1px solid rgba(34, 197, 94, 0.25)" }}>
-              Day 3 of 7 Active
+              Day 4 of 7 Active
             </span>
           </div>
 
@@ -194,7 +198,7 @@ export default function App() {
           © 2026 {site.name} • Arba Minch University, Ethiopia
         </p>
         <p style={{ margin: 0 }}>
-          Day 3 Commit: Editorial Hero &amp; Portrait Framing
+          Day 4 Commit: Interactive Skills &amp; Engineering Arsenal
         </p>
       </footer>
     </div>
