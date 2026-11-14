@@ -6,6 +6,7 @@ import Marquee from "./components/Marquee";
 import Projects from "./sections/Projects";
 import ProjectModal from "./components/ProjectModal";
 import Skills from "./sections/Skills";
+import Journey from "./sections/Journey";
 import Icon from "./components/Icon";
 import { site } from "./data/site.config";
 import { projects } from "./data/projects.data";
@@ -43,16 +44,16 @@ export default function App() {
       status: "completed",
     },
     {
-      day: "Day 5 (Today)",
+      day: "Day 5",
       title: "The 3 Featured Project Case Studies",
       desc: "Shakir Bakery, Bamrika Fashion, and Mekida Hotel QR Menu with interactive smartphone simulation.",
-      status: "completed-today",
+      status: "completed",
     },
     {
-      day: "Day 6",
+      day: "Day 6 (Today)",
       title: "Development Journey & Engineering Process",
       desc: "Core software engineering principles, iterative methodology, and problem-solving pillars.",
-      status: "upcoming",
+      status: "completed-today",
     },
     {
       day: "Day 7",
@@ -76,67 +77,37 @@ export default function App() {
       {/* Luxury Marquee Banner */}
       <Marquee items={site.marquee} />
 
-      {/* Day 5 Featured Projects Showcase */}
+      {/* Featured Projects Showcase */}
       <Projects onOpen={openProject} />
 
       {/* Skills Matrix */}
       <Skills />
 
-      {/* Day 5 Deep Case Study Modal */}
+      {/* Day 6 Development Journey & Engineering Process */}
+      <Journey />
+
+      {/* Deep Case Study Modal */}
       <ProjectModal project={activeProject} onClose={closeProject} />
 
       {/* Main Sprint Dashboard & Verification Hub */}
       <section style={{ maxWidth: "1100px", margin: "4rem auto 3.5rem", padding: "0 1.5rem" }}>
         {/* Sprint Status Badge */}
         <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.35rem 0.85rem", borderRadius: "999px", background: "rgba(200, 169, 106, 0.12)", border: "1px solid rgba(200, 169, 106, 0.3)", color: "var(--gold)", fontFamily: "var(--font-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "1.5rem" }}>
-          <span>💼</span>
-          <span>Daily Git Sprint • Day 5 of 7</span>
+          <span>🛠️</span>
+          <span>Daily Git Sprint • Day 6 of 7</span>
         </div>
 
         <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 800, lineHeight: 1.15, margin: "0 0 1.2rem", maxWidth: "820px" }}>
-          Featured Project Case Studies &amp;{" "}
+          Development Journey &amp;{" "}
           <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--gold)", fontWeight: 400 }}>
-            Interactive Demo
+            Engineering Process
           </span>
           .
         </h2>
 
         <p style={{ fontSize: "1.05rem", color: "var(--text-body)", maxWidth: "680px", lineHeight: 1.65, margin: "0 0 2.5rem" }}>
-          Day 5 delivers all 3 featured production case studies: Shakir Cake &amp; Bakery, Bamrika Islamic Cloth Center, and Mekida Hotel QR Digital Menu with an interactive CSS smartphone simulation and full-screen case-study modals.
+          Day 6 integrates the software engineering philosophy and disciplined problem-solving methodology that guides how software is designed, implemented, tested, and iterated at Arba Minch University.
         </p>
-
-        {/* Feature Verification Callout */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem", marginBottom: "3rem" }}>
-          <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
-            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>🎂</span>
-            <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
-              01 • Shakir Cake &amp; Bakery
-            </h4>
-            <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
-              Artisan bakery visual direction with cocoa/caramel palette, custom cake ordering workflow, and editorial imagery.
-            </p>
-          </div>
-
-          <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
-            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>👗</span>
-            <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
-              02 • Bamrika Islamic Cloth Center
-            </h4>
-            <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
-              Modest fashion and heritage tailoring editorial with deep emerald, charcoal, and warm ivory composition.
-            </p>
-          </div>
-
-          <div style={{ padding: "1.2rem", borderRadius: "16px", background: "var(--bg-card)", border: "1px solid var(--line)" }}>
-            <span style={{ color: "var(--gold)", fontSize: "1.2rem", display: "block", marginBottom: "0.4rem" }}>📱</span>
-            <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 600, margin: "0 0 0.3rem", color: "var(--text)" }}>
-              03 • Mekida Hotel QR Menu
-            </h4>
-            <p style={{ fontSize: "0.8rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
-              Interactive CSS smartphone chassis with category switching, live dining preview, and decorative QR pattern.
-            </p>
-          </div>
-        </div>
 
         {/* 7-Day Sprint Roadmap Table */}
         <div style={{ background: "var(--bg-card)", border: "1px solid var(--line)", borderRadius: "20px", padding: "2rem" }}>
@@ -150,7 +121,7 @@ export default function App() {
               </h3>
             </div>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", padding: "0.3rem 0.75rem", borderRadius: "999px", background: "rgba(34, 197, 94, 0.12)", color: "#4ade80", border: "1px solid rgba(34, 197, 94, 0.25)" }}>
-              Day 5 of 7 Active
+              Day 6 of 7 Active
             </span>
           </div>
 
@@ -214,7 +185,7 @@ export default function App() {
           © 2026 {site.name} • Arba Minch University, Ethiopia
         </p>
         <p style={{ margin: 0 }}>
-          Day 5 Commit: The 3 Featured Project Case Studies
+          Day 6 Commit: Development Journey &amp; Engineering Process
         </p>
       </footer>
     </div>
