@@ -8,7 +8,7 @@
 
 ## 📅 7-Day Git Commit Sprint Roadmap
 
-This portfolio is being engineered day-by-day with daily commits for the Web Design class assignment:
+This portfolio was engineered day-by-day with structured commits for the Web Design class assignment:
 
 | Day | Milestone / Focus | Status | Deliverables & Highlights |
 | :--- | :--- | :---: | :--- |
@@ -17,8 +17,8 @@ This portfolio is being engineered day-by-day with daily commits for the Web Des
 | **Day 3** | Editorial Hero & Portrait | ✅ **Committed** | Architectural portrait framing, headline typography, orbital astronomy art, continuous marquee |
 | **Day 4** | Interactive Skills Matrix | ✅ **Committed** | Multi-category discipline filters, project application chips, and AMU curriculum breakdown |
 | **Day 5** | The 3 Featured Projects | ✅ **Committed** | Shakir Bakery, Bamrika Fashion, and Mekida Hotel QR Menu with interactive smartphone simulation |
-| **Day 6 (Today)** | Engineering Journey & Process | ✅ **Committed** | 4 software engineering principles, iterative problem-solving methodology, disciplined design |
-| **Day 7** | Contact Hub & Vercel Launch | ⏳ Upcoming | Direct contact channels, one-click .vcf vCard export, and live production deployment on Vercel |
+| **Day 6** | Engineering Journey & Process | ✅ **Committed** | 4 software engineering principles, iterative problem-solving methodology, disciplined design |
+| **Day 7** | Full Launch, vCard & Contact Hub | ✅ **Committed** | Complete portfolio launch: Contact hub with .vcf vCard export, Command Palette HUD (Ctrl+K), Cursor Halo, and production launch |
 
 ---
 
@@ -26,10 +26,10 @@ This portfolio is being engineered day-by-day with daily commits for the Web Des
 
 - **Framework:** React 18
 - **Tooling:** Vite 5
-- **Styling Architecture:** Modern CSS Design Tokens (`tokens.css`, `base.css`, `components.css`)
+- **Styling Architecture:** Modern CSS Design Tokens (`tokens.css`, `base.css`, `components.css`, `sections.css`)
 - **Aesthetic:** Obsidian Black (`#090A0C`), Elevated Charcoal (`#111318`), and Champagne Gold (`#C8A96A`)
 - **Typography:** Space Grotesk (display), Cormorant Garamond (editorial serif), Inter (body), JetBrains Mono (metadata)
-- **Deployment:** Vercel
+- **Deployment Platform:** Vercel
 
 ---
 
@@ -44,7 +44,7 @@ npm install
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:5173](http://localhost:5173) (or `http://localhost:3000`) in your browser.
 
 ### 3. Build for Production
 ```bash
@@ -58,7 +58,7 @@ npm run build
 **Esmael Gemechu**  
 Software Engineering Student  
 Arba Minch University, Ethiopia  
-- **Email:** [gemechuesmael5@gmail.com](mailto:gemechuesmael5@gmail.com)  
+- **Email:** [gemechuesamel5@gmail.com](mailto:gemechuesamel5@gmail.com)  
 - **Phone:** +251 97 893 0362  
 - **GitHub:** [https://github.com/EsmaelDev](https://github.com/EsmaelDev)  
 

@@ -1,193 +1,166 @@
-import { useState, useCallback } from "react";
-import Navbar from "./components/Navbar";
+import { useCallback, useEffect, useState } from "react";
+import Preloader from "./components/Preloader";
 import ScrollProgress from "./components/ScrollProgress";
+import CursorHalo from "./components/CursorHalo";
+import Navbar from "./components/Navbar";
+import CommandPalette from "./components/CommandPalette";
+import ProjectModal from "./components/ProjectModal";
+import ToastStack from "./components/ToastStack";
+import NotFound from "./components/NotFound";
 import Hero from "./sections/Hero";
 import Marquee from "./components/Marquee";
 import Projects from "./sections/Projects";
-import ProjectModal from "./components/ProjectModal";
+import About from "./sections/About";
 import Skills from "./sections/Skills";
 import Journey from "./sections/Journey";
-import Icon from "./components/Icon";
-import { site } from "./data/site.config";
+import Contact from "./sections/Contact";
+import Footer from "./sections/Footer";
 import { projects } from "./data/projects.data";
+import { copyText, scrollToId, toast } from "./lib/utils";
+
+const KONAMI = [
+  "arrowup",
+  "arrowup",
+  "arrowdown",
+  "arrowdown",
+  "arrowleft",
+  "arrowright",
+  "arrowleft",
+  "arrowright",
+  "b",
+  "a",
+];
+
+const isNotFoundHash = () => window.location.hash === "#/404";
 
 export default function App() {
+  const [booted, setBooted] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
   const [activeProjectId, setActiveProjectId] = useState(null);
+  const [notFound, setNotFound] = useState(isNotFoundHash);
+
   const activeProject = projects.find((p) => p.id === activeProjectId) || null;
+
+  /* ——— #/404 hash route ——— */
+  useEffect(() => {
+    const onHash = () => {
+      const nf = isNotFoundHash();
+      setNotFound(nf);
+      if (nf) window.scrollTo(0, 0);
+    };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  const leaveNotFound = useCallback(() => {
+    if (isNotFoundHash()) {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+    }
+    setNotFound(false);
+  }, []);
+
+  /* ——— global shortcuts ——— */
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setPaletteOpen((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  /* ——— Konami easter egg ——— */
+  useEffect(() => {
+    let buffer = [];
+    const onKey = (e) => {
+      buffer.push(e.key.toLowerCase());
+      buffer = buffer.slice(-KONAMI.length);
+      if (buffer.join(",") === KONAMI.join(",")) {
+        document.body.classList.add("gold-mode");
+        toast("Konami code accepted — gold mode engaged.");
+        setTimeout(
+          () => document.body.classList.remove("gold-mode"),
+          6100
+        );
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  /* ——— palette actions ——— */
+  const navigate = useCallback(
+    (id) => {
+      leaveNotFound();
+      requestAnimationFrame(() => scrollToId(id));
+    },
+    [leaveNotFound]
+  );
 
   const openProject = useCallback((id) => setActiveProjectId(id), []);
   const closeProject = useCallback(() => setActiveProjectId(null), []);
 
-  const roadmap = [
-    {
-      day: "Day 1",
-      title: "Architecture & Design System Foundation",
-      desc: "Project scaffolding, Obsidian/Gold design tokens, typography, and Git sprint roadmap.",
-      status: "completed",
-    },
-    {
-      day: "Day 2",
-      title: "Navigation Architecture & AMU Time Radar",
-      desc: "Sticky blur navbar, live Arba Minch timezone radar, mobile drawer, and theme switcher.",
-      status: "completed",
-    },
-    {
-      day: "Day 3",
-      title: "Editorial Hero Section & Portrait Framing",
-      desc: "Architectural portrait frame, headline typography, orbital geometry, and AMU academic positioning.",
-      status: "completed",
-    },
-    {
-      day: "Day 4",
-      title: "Interactive Skills & Engineering Arsenal",
-      desc: "Categorized skill filters, project connection badges, context pills, and AMU curriculum breakdown.",
-      status: "completed",
-    },
-    {
-      day: "Day 5",
-      title: "The 3 Featured Project Case Studies",
-      desc: "Shakir Bakery, Bamrika Fashion, and Mekida Hotel QR Menu with interactive smartphone simulation.",
-      status: "completed",
-    },
-    {
-      day: "Day 6 (Today)",
-      title: "Development Journey & Engineering Process",
-      desc: "Core software engineering principles, iterative methodology, and problem-solving pillars.",
-      status: "completed-today",
-    },
-    {
-      day: "Day 7",
-      title: "Contact Hub, Digital vCard & Vercel Launch",
-      desc: "Direct contact channels, one-click .vcf vCard export, and live production deployment.",
-      status: "upcoming",
-    },
-  ];
+  const toggleTheme = useCallback(() => {
+    const root = document.documentElement;
+    const next =
+      (root.dataset.theme || "obsidian") === "obsidian" ? "ivory" : "obsidian";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("eg-theme", next);
+    } catch {
+      /* private mode */
+    }
+    window.dispatchEvent(new CustomEvent("eg-theme"));
+  }, []);
 
   return (
-    <div className="app is-booted" style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)" }}>
-      {/* Viewport Reading Progress Bar */}
+    <div className={`app${booted ? " is-booted" : ""}`}>
+      <a className="skip-link" href="#main">
+        Skip to main content
+      </a>
+
+      {!booted && <Preloader onDone={() => setBooted(true)} />}
       <ScrollProgress />
+      <CursorHalo />
+      <div className="grid-backdrop" aria-hidden="true" />
+      <Navbar onOpenPalette={() => setPaletteOpen(true)} />
 
-      {/* Production Sticky Navigation Bar */}
-      <Navbar onOpenPalette={() => {}} />
+      {notFound ? (
+        <NotFound onReturn={navigate.bind(null, "top")} />
+      ) : (
+        <main id="main">
+          <Hero />
+          <Marquee />
+          <Projects onOpen={openProject} />
+          <About />
+          <Skills />
+          <Journey />
+          <Contact />
+        </main>
+      )}
 
-      {/* Hero Section */}
-      <Hero />
+      <Footer />
 
-      {/* Luxury Marquee Banner */}
-      <Marquee items={site.marquee} />
-
-      {/* Featured Projects Showcase */}
-      <Projects onOpen={openProject} />
-
-      {/* Skills Matrix */}
-      <Skills />
-
-      {/* Day 6 Development Journey & Engineering Process */}
-      <Journey />
-
-      {/* Deep Case Study Modal */}
-      <ProjectModal project={activeProject} onClose={closeProject} />
-
-      {/* Main Sprint Dashboard & Verification Hub */}
-      <section style={{ maxWidth: "1100px", margin: "4rem auto 3.5rem", padding: "0 1.5rem" }}>
-        {/* Sprint Status Badge */}
-        <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.35rem 0.85rem", borderRadius: "999px", background: "rgba(200, 169, 106, 0.12)", border: "1px solid rgba(200, 169, 106, 0.3)", color: "var(--gold)", fontFamily: "var(--font-mono)", fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "1.5rem" }}>
-          <span>🛠️</span>
-          <span>Daily Git Sprint • Day 6 of 7</span>
-        </div>
-
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 800, lineHeight: 1.15, margin: "0 0 1.2rem", maxWidth: "820px" }}>
-          Development Journey &amp;{" "}
-          <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "var(--gold)", fontWeight: 400 }}>
-            Engineering Process
-          </span>
-          .
-        </h2>
-
-        <p style={{ fontSize: "1.05rem", color: "var(--text-body)", maxWidth: "680px", lineHeight: 1.65, margin: "0 0 2.5rem" }}>
-          Day 6 integrates the software engineering philosophy and disciplined problem-solving methodology that guides how software is designed, implemented, tested, and iterated at Arba Minch University.
-        </p>
-
-        {/* 7-Day Sprint Roadmap Table */}
-        <div style={{ background: "var(--bg-card)", border: "1px solid var(--line)", borderRadius: "20px", padding: "2rem" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.8rem", borderBottom: "1px solid var(--line)", paddingBottom: "1rem" }}>
-            <div>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--gold)", letterSpacing: "0.18em", textTransform: "uppercase", margin: "0 0 0.3rem" }}>
-                Web Design Class Assignment
-              </p>
-              <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.4rem", fontWeight: 700, margin: 0, color: "var(--text)" }}>
-                7-Day Git Commit Roadmap
-              </h3>
-            </div>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", padding: "0.3rem 0.75rem", borderRadius: "999px", background: "rgba(34, 197, 94, 0.12)", color: "#4ade80", border: "1px solid rgba(34, 197, 94, 0.25)" }}>
-              Day 6 of 7 Active
-            </span>
-          </div>
-
-          <div style={{ display: "grid", gap: "1rem" }}>
-            {roadmap.map((item) => {
-              const isToday = item.status === "completed-today";
-              const isDone = item.status === "completed";
-              return (
-                <div
-                  key={item.day}
-                  style={{
-                    padding: "1.2rem 1.4rem",
-                    borderRadius: "14px",
-                    background: isToday ? "rgba(200, 169, 106, 0.08)" : isDone ? "rgba(34, 197, 94, 0.04)" : "rgba(255, 255, 255, 0.02)",
-                    border: isToday ? "1px solid var(--gold)" : isDone ? "1px solid rgba(34, 197, 94, 0.3)" : "1px solid var(--line)",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    flexWrap: "wrap",
-                    gap: "1rem",
-                  }}
-                >
-                  <div style={{ maxWidth: "650px" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.3rem" }}>
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", fontWeight: 700, color: isToday ? "var(--gold)" : isDone ? "#4ade80" : "var(--text-soft)" }}>
-                        {item.day}
-                      </span>
-                      <span style={{ color: "var(--gray-deep)" }}>•</span>
-                      <h4 style={{ fontFamily: "var(--font-display)", fontSize: "0.98rem", fontWeight: 600, color: "var(--text)", margin: 0 }}>
-                        {item.title}
-                      </h4>
-                    </div>
-                    <p style={{ fontSize: "0.82rem", color: "var(--text-soft)", margin: 0, lineHeight: 1.5 }}>
-                      {item.desc}
-                    </p>
-                  </div>
-
-                  <span
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.72rem",
-                      padding: "0.3rem 0.7rem",
-                      borderRadius: "6px",
-                      background: isToday ? "rgba(200, 169, 106, 0.15)" : isDone ? "rgba(34, 197, 94, 0.15)" : "rgba(255, 255, 255, 0.04)",
-                      color: isToday ? "var(--gold)" : isDone ? "#4ade80" : "var(--text-soft)",
-                      border: isToday ? "1px solid var(--gold)" : isDone ? "1px solid rgba(34, 197, 94, 0.3)" : "1px solid var(--line)",
-                    }}
-                  >
-                    {isToday ? "✓ Committing Today" : isDone ? "✓ Completed" : "⏳ Up Next"}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer style={{ maxWidth: "1100px", margin: "3rem auto 0", padding: "1.5rem", borderTop: "1px solid var(--line)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", fontSize: "0.78rem", color: "var(--text-soft)", fontFamily: "var(--font-mono)" }}>
-        <p style={{ margin: 0 }}>
-          © 2026 {site.name} • Arba Minch University, Ethiopia
-        </p>
-        <p style={{ margin: 0 }}>
-          Day 6 Commit: Development Journey &amp; Engineering Process
-        </p>
-      </footer>
+      <CommandPalette
+        open={paletteOpen}
+        onClose={() => setPaletteOpen(false)}
+        onNavigate={navigate}
+        onOpenProject={openProject}
+        onCopy={copyText}
+        onToggleTheme={toggleTheme}
+      />
+      <ProjectModal
+        project={activeProject}
+        open={!!activeProject}
+        onClose={closeProject}
+      />
+      <ToastStack />
     </div>
   );
 }
