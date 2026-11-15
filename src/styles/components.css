@@ -1429,6 +1429,18 @@ body.has-cursor .cursor-ring {
   }
 }
 
+@media (max-width: 768px) {
+  .navbar__radar {
+    display: none !important;
+  }
+}
+
+@media (max-width: 440px) {
+  .icon-btn[title*="Command"] {
+    display: none !important;
+  }
+}
+
 /* ghost index numbers overlap content on small screens — hide them */
 @media (max-width: 899px) {
   .project-card__index {

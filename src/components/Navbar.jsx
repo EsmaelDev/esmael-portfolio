@@ -206,6 +206,10 @@ export default function Navbar({ onOpenPalette }) {
           </ul>
         </nav>
         <div className="mobile-menu__footer">
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.8rem", color: "var(--gold)", fontFamily: "var(--font-mono)", fontSize: "0.8rem" }}>
+            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 8px #4ade80" }} />
+            <span>{time || "11:30:00"} • Arba Minch (GMT+3)</span>
+          </div>
           <a href={`mailto:${site.email}`}>{site.email}</a>
           <a href={site.github} target="_blank" rel="noreferrer noopener">
             GitHub ↗
