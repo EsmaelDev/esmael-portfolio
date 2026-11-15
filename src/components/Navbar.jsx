@@ -119,7 +119,7 @@ export default function Navbar({ onOpenPalette }) {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "0.45rem",
+                gap: "0.4rem",
                 padding: "0.28rem 0.65rem",
                 borderRadius: "999px",
                 background: "rgba(255, 255, 255, 0.04)",
@@ -137,10 +137,11 @@ export default function Navbar({ onOpenPalette }) {
                   background: "#4ade80",
                   boxShadow: "0 0 8px #4ade80",
                   display: "inline-block",
+                  flexShrink: 0,
                 }}
               />
-              <span style={{ color: "var(--text)", fontWeight: 500 }}>{time || "10:15:00"}</span>
-              <span style={{ color: "var(--gray-deep)", fontSize: "0.66rem" }}>AMU·GMT+3</span>
+              <span style={{ color: "var(--text)", fontWeight: 500 }}>{time || "11:30:00"}</span>
+              <span className="radar-label" style={{ color: "var(--gray-deep)", fontSize: "0.66rem" }}>AMU·GMT+3</span>
             </div>
 
             <button

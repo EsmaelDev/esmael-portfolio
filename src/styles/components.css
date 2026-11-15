@@ -1427,17 +1427,31 @@ body.has-cursor .cursor-ring {
   .navbar__cta {
     display: none;
   }
-}
 
-@media (max-width: 768px) {
-  .navbar__radar {
-    display: none !important;
+  .navbar__actions {
+    gap: 0.45rem;
   }
 }
 
-@media (max-width: 440px) {
+@media (max-width: 600px) {
   .icon-btn[title*="Command"] {
     display: none !important;
+  }
+
+  .navbar__radar {
+    padding: 0.22rem 0.5rem;
+    font-size: 0.68rem;
+  }
+
+  .navbar__radar .radar-label {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar__radar {
+    font-size: 0.64rem;
+    padding: 0.18rem 0.4rem;
   }
 }
 
